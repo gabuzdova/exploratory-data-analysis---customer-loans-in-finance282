@@ -1,5 +1,8 @@
-import yaml
 import pandas as pd
+import psycopg2
+import sqlalchemy
+from sqlalchemy import create_engine
+import yaml
 #class RDSDatabaseConnector:
  #   def __init(self, loadcredentials)
 def loadcredentials():
@@ -9,10 +12,6 @@ def loadcredentials():
         data = yaml.load(credentialsfile, Loader=SafeLoader)
         return(data)
 def initialisesqlalchemy():
-    import psycopg2
-    import sqlalchemy
-    from sqlalchemy import create_engine
-    import pandas as pd
 
     hst=(list(loadcredentials().values())[0])
     pswd=(list(loadcredentials().values())[1])
@@ -37,7 +36,7 @@ def save_table_local():
     df=pd.DataFrame(sql_query)
     df.to_csv("local.csv")
 def load_data_from_local_machine():
-    import pandas as pd
     local_database = pd.read_csv(r"/home/zuzana/Desktop/AICORE/AICORE/EXPLORATORY DATA ANALYSIS CUSTOMER LOANS IN FINANCE/local.csv")
     df = pd.DataFrame(local_database)
-    return(df)
+    print(df)
+load_data_from_local_machine()
